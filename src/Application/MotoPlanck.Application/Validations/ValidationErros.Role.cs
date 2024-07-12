@@ -12,6 +12,9 @@ namespace MotoPlanck.Application.Validations
         /// </summary>
         internal static class Role
         {
+            internal static Error FindRoleOnDatabase => new(
+                "Role.FindRoleOnDatabase",
+                "Unable to find role on database");
             internal static Error CreateRoleOnDatabase => new(
                 "Role.CreateRoleOnDatabase",
                 "Unable to create role in database");

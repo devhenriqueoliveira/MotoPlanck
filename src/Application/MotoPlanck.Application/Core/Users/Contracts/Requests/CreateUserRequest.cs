@@ -47,6 +47,6 @@ namespace MotoPlanck.Application.Core.Users.Contracts.Requests
         /// Gets or sets the user roel id.
         /// </summary>
         [JsonPropertyName("role_id")]
-        public Guid RoleId { get; set; } = default!;
+        public Guid RoleId { get; set; } = Guid.Empty!;
     }
 }

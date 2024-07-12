@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using MediatR;
-using MotoPlanck.Application.Validations;
 using MotoPlanck.Domain.Primitives;
 using MotoPlanck.Domain.Primitives.Result;
 
@@ -40,10 +39,9 @@ namespace MotoPlanck.Application.Behaviors
 
             if (failures.Count != 0)
             {
-                var errors = failures.Select(value => new Error(value.ErrorCode, value.ErrorMessage)); //TODO Pensar na forma de retornar uma lista de erro
-                var result = await Result.FailureAsync(errors.First()) as TResponse;
+                var errors = failures.Select(value => new Error(value.ErrorCode, value.ErrorMessage));
+                var result = Result.Failure(errors.First()) as TResponse;
                 return result!;
-                //throw new ValidationException(failures);
             }
 
             return await next();

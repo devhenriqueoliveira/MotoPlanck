@@ -1,7 +1,5 @@
-﻿using MediatR;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using MotoPlanck.Application.Abstractions.Messaging;
-using MotoPlanck.Application.Core.Motorcycles.Commands.CreateMotorcycle;
 using MotoPlanck.Domain.Core.Interfaces;
 using MotoPlanck.Domain.Primitives.Result;
 
@@ -12,19 +10,23 @@ namespace MotoPlanck.Application.Core.Motorcycles.Commands.UpdateMotorcycle
     /// </summary>
     internal sealed class UpdateMotorcycleHandler(
         IUnitOfWork unitOfWork,
-        ILogger<CreateMotorcycleHandler> logger) : ICommandHandler<UpdateMotorcycleCommand, Result>
+        ILogger<UpdateMotorcycleHandler> logger) : ICommandHandler<UpdateMotorcycleCommand, Result>
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
-        private readonly ILogger<CreateMotorcycleHandler> _logger = logger;
+        private readonly ILogger<UpdateMotorcycleHandler> _logger = logger;
 
         public async Task<Result> Handle(UpdateMotorcycleCommand command, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Iniciando...");
+            _logger.LogInformation("Starting the process to update a motorcycle.");
 
-            await _unitOfWork.Motorcycles.UpdatePlateByIdAsync(command.Id, command.Plate, cancellationToken);
+            var response = await _unitOfWork.Motorcycles.UpdatePlateByIdAsync(command.Id, command.Plate, cancellationToken);
+
+            if (response.IsFailure)
+                return Result.Failure(response.Error);
+
             await _unitOfWork.CommitAsync();
 
-            _logger.LogInformation("Atualizado com sucesso...");
+            _logger.LogInformation("Process realized with success.");
 
             return Result.Success();
         }

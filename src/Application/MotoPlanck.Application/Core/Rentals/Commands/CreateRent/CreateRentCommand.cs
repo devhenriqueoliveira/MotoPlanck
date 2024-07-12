@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MotoPlanck.Application.Abstractions.Messaging;
+using MotoPlanck.Domain.Primitives.Result;
 
 namespace MotoPlanck.Application.Core.Rentals.Commands.CreateRent
 {
-    internal class CreateRentCommand
-    {
-    }
+    public sealed record CreateRentCommand(
+        DateTime InitialDate,
+        DateTime FinalDate,
+        DateTime ForecastDate,
+        Guid DeliverymanId,
+        Guid PlanId,
+        Guid MotorcycleId) : ICommand<Result>;
 }

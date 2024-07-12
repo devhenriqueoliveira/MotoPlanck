@@ -1,4 +1,4 @@
-﻿namespace MotoPlanck.Application.Core.Motorcycles.Contracts
+﻿namespace MotoPlanck.Application.Core.Motorcycles.Contracts.Responses
 {
     /// <summary>
     /// Represents the motorcycle response.

@@ -1,21 +1,22 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using MotoPlanck.Application.Abstractions.Messaging;
-using MotoPlanck.Application.Core.Deliverymans.Commands.CreateDeliveryman;
 using MotoPlanck.Application.Validations;
 using MotoPlanck.Domain.Core.Interfaces;
 using MotoPlanck.Domain.Primitives.Result;
 
 namespace MotoPlanck.Application.Core.Deliverymans.Commands.DeleteDeliveryman
 {
+    /// <summary>
+    /// Represents the <see cref="DeleteDeliverymanCommand"/> handler.
+    /// </summary>
+    /// <param name="logger">The logger of <see cref="DeleteDeliverymanHandler"/>.</param>
+    /// <param name="unitOfWork">The unit of work of repositories</param>
     internal sealed class DeleteDeliverymanHandler(
-        IMapper mapper,
-        ILogger<CreateDeliverymanHandler> logger,
+        ILogger<DeleteDeliverymanHandler> logger,
         IUnitOfWork unitOfWork) : ICommandHandler<DeleteDeliverymanCommand, Result>
     {
         #region Fields
-        private readonly IMapper _mapper = mapper;
-        private readonly ILogger<CreateDeliverymanHandler> _logger = logger;
+        private readonly ILogger<DeleteDeliverymanHandler> _logger = logger;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         public async Task<Result> Handle(DeleteDeliverymanCommand request, CancellationToken cancellationToken)

@@ -12,6 +12,7 @@ namespace MotoPlanck.Application.Core.Deliverymans.Commands.UpdateDeliveryman
     /// <param name="PictureCnhId">The picture cnh identificator of deliveryman</param>
     /// <param name="UserId">The user identificator of deliveryman</param>
     public sealed record UpdateDeliverymanCommand(
+        Guid Id,
         string Cnpj,
         string Cnh,
         string TypeCnh,

@@ -30,13 +30,13 @@ namespace MotoPlanck.Application.Core.Roles.Commands.CreateRole
             var response = await _unitOfWork.Roles.CreateAsync(entity!, cancellationToken);
 
             if (response.IsFailure)
-                return await Result.FailureAsync(ValidationErros.Role.CreateRoleOnDatabase);
+                return Result.Failure(ValidationErros.Role.CreateRoleOnDatabase);
 
             await _unitOfWork.CommitAsync();
 
             _logger.LogInformation("Role created with success.");
 
-            return await Result.SuccessAsync();
+            return Result.Success();
         }
     }
 }

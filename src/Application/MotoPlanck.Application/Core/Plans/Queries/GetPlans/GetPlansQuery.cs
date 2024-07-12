@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MotoPlanck.Application.Abstractions.Messaging;
+using MotoPlanck.Application.Core.Plans.Contracts.Responses;
+using MotoPlanck.Domain.Primitives.Result;
 
 namespace MotoPlanck.Application.Core.Plans.Queries.GetPlans
 {
-    internal class GetPlansQuery
-    {
-    }
+    /// <summary>
+    /// Represents the query to get plans.
+    /// </summary>
+    public sealed record GetPlansQuery : IQuery<Result<IEnumerable<PlanResponse>>>;
 }

@@ -2,7 +2,7 @@
 using MotoPlanck.Application.Core.Users.Contracts.Responses;
 using MotoPlanck.Domain.Primitives.Result;
 
-namespace MotoPlanck.Application.Core.Users.Queries.GetAllUser
+namespace MotoPlanck.Application.Core.Users.Queries.GetUsers
 {
-    public sealed record class GetAllUserQuery : IQuery<Result<IEnumerable<UserResponse>>>;
+    public sealed record class GetUsersQuery : IQuery<Result<IEnumerable<UserResponse>>>;
 }

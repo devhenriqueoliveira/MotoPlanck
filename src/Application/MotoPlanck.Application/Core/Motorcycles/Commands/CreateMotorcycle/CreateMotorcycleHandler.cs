@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MotoPlanck.Application.Abstractions.Messaging;
-using MotoPlanck.Domain.Core.Entities;
+using MotoPlanck.Application.Mappings;
 using MotoPlanck.Domain.Core.Interfaces;
 using MotoPlanck.Domain.Primitives.Result;
 
@@ -15,14 +15,18 @@ namespace MotoPlanck.Application.Core.Motorcycles.Commands.CreateMotorcycle
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ILogger<CreateMotorcycleHandler> _logger = logger;
-        public async Task<Result> Handle(CreateMotorcycleCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateMotorcycleCommand command, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Iniciando...");
+            _logger.LogInformation("Starting the process to create a motorcycle.");
 
-            await _unitOfWork.Motorcycles.CreateAsync(new Motorcycle(request.Model, request.Plate, request.Year), cancellationToken);
+            var response = await _unitOfWork.Motorcycles.CreateAsync(command.ToEntity(), cancellationToken);
+            
+            if(response.IsFailure)
+                return Result.Failure(response.Error);
+
             await _unitOfWork.CommitAsync();
 
-            _logger.LogInformation("Criado com sucesso...");
+            _logger.LogInformation("Process realized with success.");
 
             return Result.Success();
         }

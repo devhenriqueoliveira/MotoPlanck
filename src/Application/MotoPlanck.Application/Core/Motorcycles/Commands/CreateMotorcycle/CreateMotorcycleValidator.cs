@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using MotoPlanck.Application.Abstractions.Common;
 using MotoPlanck.Domain.Core.Interfaces;
 
 namespace MotoPlanck.Application.Core.Motorcycles.Commands.CreateMotorcycle
@@ -11,13 +10,13 @@ namespace MotoPlanck.Application.Core.Motorcycles.Commands.CreateMotorcycle
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreateMotorcycleValidator(IUnitOfWork unitOfWork, IDateTime dateTime)
+        public CreateMotorcycleValidator(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
 
             RuleFor(command => command.Year)
                 .GreaterThan(0).WithMessage("Year must be greater than 0.")
-                .ExclusiveBetween(1885, dateTime.UtcNow.Year).WithMessage($"Year must be between 1885 and {dateTime.UtcNow.Year}");
+                .ExclusiveBetween(1885, DateTime.UtcNow.Year).WithMessage($"Year must be between 1885 and {DateTime.UtcNow.Year}");
 
             RuleFor(command => command.Plate)
                 .NotEmpty().WithMessage("Plate cannot be empty.")

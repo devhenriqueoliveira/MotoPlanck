@@ -20,7 +20,7 @@ namespace MotoPlanck.Application.Core.Roles.Commands.DeleteRole
 
         private async Task<bool> ExistsIdentificator(Guid id, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.Roles.ExistsIdentificator(id, cancellationToken);
+            return await _unitOfWork.Roles.ExistsRoleAsync(id, cancellationToken);
         }
     }
 }

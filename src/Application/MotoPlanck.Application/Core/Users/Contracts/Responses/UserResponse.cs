@@ -9,6 +9,12 @@ namespace MotoPlanck.Application.Core.Users.Contracts.Responses
     public class UserResponse
     {
         /// <summary>
+        /// Gets or sets the user id.
+        /// </summary>
+        [JsonPropertyName("id")]
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the user first name.
         /// </summary>
         [JsonPropertyName("first_name")]

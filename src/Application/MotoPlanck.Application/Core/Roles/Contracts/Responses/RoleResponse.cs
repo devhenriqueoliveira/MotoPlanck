@@ -30,9 +30,5 @@ namespace MotoPlanck.Application.Core.Roles.Contracts.Responses
         [JsonProperty("active")]
         public bool Active { get; set; }
 
-        public Role MapToEntity()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
