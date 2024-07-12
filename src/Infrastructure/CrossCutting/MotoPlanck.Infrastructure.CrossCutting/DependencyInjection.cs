@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MotoPlanck.Application.Abstractions.Common;
-using MotoPlanck.Infrastructure.CrossCutting.Common;
 
 namespace MotoPlanck.Infrastructure.CrossCutting
 {
@@ -16,8 +14,6 @@ namespace MotoPlanck.Infrastructure.CrossCutting
         /// <returns>The same service collection.</returns>
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddTransient<IDateTime, MachineDateTime>();
-
             return services;
         }
     }

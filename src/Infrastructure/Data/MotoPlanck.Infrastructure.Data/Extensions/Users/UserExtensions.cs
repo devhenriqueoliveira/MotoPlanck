@@ -2,9 +2,9 @@
 
 namespace MotoPlanck.Infrastructure.Data.Extensions.Users
 {
-    public static class UserExtensions
+    internal static class UserExtensions
     {
-        public static object MapFromParameters(this User user)
+        internal static object MapFromParameters(this User user)
         {
             return new
             {

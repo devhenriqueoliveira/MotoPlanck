@@ -2,7 +2,7 @@
 
 namespace MotoPlanck.Infrastructure.Data.Extensions
 {
-    public class RepositoryExtensions
+    internal static class RepositoryExtensions
     {
         public static Error CreatedWithError => new ("Repository.CreatedWithError", "Object was not created");
         public static Error UpdatedWithError => new ("Repository.UpdatedWithError", "Object was not updated");

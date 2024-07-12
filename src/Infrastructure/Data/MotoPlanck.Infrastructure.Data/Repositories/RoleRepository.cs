@@ -68,7 +68,7 @@ namespace MotoPlanck.Infrastructure.Data.Repositories
             return Result.Success(role);
         }
 
-        public async Task<bool> ExistsIdentificator(Guid id, CancellationToken cancellationToken)
+        public async Task<bool> ExistsRoleAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _context.Connection.QuerySingleAsync<bool>(RoleQueryConstants.EXISTS_IDENTIFICATOR, new { Id = id }, _context.Transaction);
         }

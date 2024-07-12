@@ -90,6 +90,12 @@ namespace MotoPlanck.Infrastructure.Data.Repositories
             return Result.Success(records);
         }
 
+        public async Task<Result<Motorcycle>> GetByPlateAsync(string plate, CancellationToken cancellationToken)
+        {
+            var response = await _context.Connection.QuerySingleOrDefaultAsync<Motorcycle>(MotorcycleQueryConstants.GET_BY_PLATE_MOTORCYCLE, new { Plate = plate.Trim() }, _context.Transaction);
+            return response!;
+        }
+
         #endregion
     }
 }

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Domain\MotoPlanck.Domain\MotoPlanck.Domain.csproj" />
+    <ProjectReference Include="..\..\CrossCutting\MotoPlanck.Infrastructure.CrossCutting\MotoPlanck.Infrastructure.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>
