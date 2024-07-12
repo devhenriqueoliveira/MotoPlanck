@@ -13,8 +13,10 @@ namespace MotoPlanck.WebApi.Endpoints.Deliveryman
         {
             app.MapDelete("deliveryman/{id}", async (ISender sender, Guid id) =>
             {
-                return await Result.Create(new DeleteDeliverymanRequest { Id = id }, Errors.UnProcessableRequest)
-                .Map(value => new DeleteDeliverymanCommand(id))
+                var request = new DeleteDeliverymanRequest() { Id = id };
+
+                return await Result.Create(request, Errors.UnProcessableRequest)
+                .Map(value => new DeleteDeliverymanCommand(request.Id))
                 .Bind(command => sender.Send(command))
                 .Match(Ok, BadRequest);
             });//.RequireAuthorization("AdminPolicy");

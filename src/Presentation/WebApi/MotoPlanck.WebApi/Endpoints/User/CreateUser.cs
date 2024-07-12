@@ -7,7 +7,7 @@ using MotoPlanck.WebApi.Constants;
 
 namespace MotoPlanck.WebApi.Endpoints.User
 {
-    public class CreateUser : BaseEndpoint, IEndpoint
+    public sealed class CreateUser : BaseEndpoint, IEndpoint
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
@@ -22,8 +22,7 @@ namespace MotoPlanck.WebApi.Endpoints.User
                         request.BirthDate,
                         request.RoleId))
                     .Bind(command => sender.Send(command))
-                    .Match(Ok, BadRequest));
-            //RequireAuthorization("AdminPolicy")
+                    .Match(Created, BadRequest)).AllowAnonymous();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MotoPlanck.Application.Core.Deliverymans.Queries.GetAllDeliveryman;
+using MotoPlanck.Application.Core.Deliverymans.Queries.GetDeliverymans;
 using MotoPlanck.WebApi.Abstractions;
 
 namespace MotoPlanck.WebApi.Endpoints.Deliveryman

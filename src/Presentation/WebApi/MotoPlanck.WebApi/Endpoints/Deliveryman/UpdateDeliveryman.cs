@@ -11,9 +11,10 @@ namespace MotoPlanck.WebApi.Endpoints.Deliveryman
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapPut("deliveryman", async (ISender sender, UpdateDeliverymanRequest request) =>
+            app.MapPut("deliveryman/{id}", async (ISender sender, Guid id, UpdateDeliverymanRequest request) =>
                 await Result.Create(request, Errors.UnProcessableRequest)
                     .Map(value => new UpdateDeliverymanCommand(
+                        id,
                         request.Cnpj,
                         request.Cnh,
                         request.TypeCnh,

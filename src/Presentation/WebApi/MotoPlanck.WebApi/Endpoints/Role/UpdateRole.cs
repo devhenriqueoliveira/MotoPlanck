@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MotoPlanck.Application.Core.Roles.Commands.UpdateRole;
 using MotoPlanck.Application.Core.Roles.Contracts.Requests;
+using MotoPlanck.Domain.Core.Constants;
 using MotoPlanck.Domain.Primitives.Result;
 using MotoPlanck.WebApi.Abstractions;
 using MotoPlanck.WebApi.Constants;
@@ -19,8 +20,8 @@ namespace MotoPlanck.WebApi.Endpoints.Role
                         request.Description,
                         request.Active))
                     .Bind(command => sender.Send(command))
-                    .Match(Ok, BadRequest));
-            //RequireAuthorization("AdminPolicy")
+                    .Match(Ok, BadRequest))
+                    .RequireAuthorization(SettingsConstants.ADMIN_POLICY);
         }
     }
 }

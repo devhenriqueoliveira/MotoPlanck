@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Asp.Versioning.Builder;
+using Asp.Versioning;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using MotoPlanck.WebApi.Abstractions;
 using System.Reflection;
 
@@ -32,6 +34,37 @@ namespace MotoPlanck.WebApi.Extensions
             }
 
             return app;
+        }
+
+        public static void AddEndpoints(this WebApplication app)
+        {
+            ApiVersionSet apiVersionSet = app.NewApiVersionSet()
+                .HasApiVersion(new ApiVersion(1))
+                .ReportApiVersions()
+                .Build();
+
+            RouteGroupBuilder versionedGroup = app
+                .MapGroup("api/v{version:apiVersion}")
+                .WithApiVersionSet(apiVersionSet);
+
+            app.MapEndpoints(versionedGroup);
+        }
+
+        public static IServiceCollection AddBuilderEndpoints(this IServiceCollection services)
+        {
+            services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1);
+                options.ApiVersionReader = new UrlSegmentApiVersionReader();
+            }).AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'V";
+                options.SubstituteApiVersionInUrl = true;
+            });
+
+            services.AddEndpoints(typeof(Program).Assembly);
+
+            return services;
         }
     }
 }

@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Endpoints\Plan\" />
-    <Folder Include="Endpoints\Rent\" />
+    <Folder Include="Services\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
 
 </Project>

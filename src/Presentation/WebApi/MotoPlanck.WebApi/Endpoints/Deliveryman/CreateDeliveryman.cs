@@ -7,22 +7,23 @@ using MotoPlanck.WebApi.Constants;
 
 namespace MotoPlanck.WebApi.Endpoints.Deliveryman
 {
+    /// <summary>
+    /// Represents the endpoint to create a deliveryman
+    /// </summary>
     public sealed class CreateDeliveryman : BaseEndpoint, IEndpoint
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
             app.MapPost("deliveryman", async (ISender sender, CreateDeliverymanRequest request) =>
-            {
-                return await Result.Create(request, Errors.UnProcessableRequest)
-                .Map(value => new CreateDeliverymanCommand(
-                    request.Cnpj,
-                    request.Cnh,
-                    request.TypeCnh,
-                    request.PictureCnhId,
-                    request.UserId))
-                .Bind(command => sender.Send(command))
-                .Match(Ok, BadRequest);
-            });//.RequireAuthorization("AdminPolicy");
+                await Result.Create(request, Errors.UnProcessableRequest)
+                    .Map(value => new CreateDeliverymanCommand(
+                        request.Cnpj,
+                        request.Cnh,
+                        request.TypeCnh,
+                        request.PictureCnhId,
+                        request.UserId))
+                    .Bind(command => sender.Send(command))
+                    .Match(Created, BadRequest));
         }
     }
 }

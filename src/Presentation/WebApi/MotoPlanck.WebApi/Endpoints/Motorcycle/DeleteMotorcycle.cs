@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MotoPlanck.Application.Core.Motorcycles.Commands.DeleteMotorcycle;
-using MotoPlanck.Application.Core.Motorcycles.Contracts;
+using MotoPlanck.Application.Core.Motorcycles.Contracts.Requests;
+using MotoPlanck.Domain.Core.Constants;
 using MotoPlanck.Domain.Primitives.Result;
 using MotoPlanck.WebApi.Abstractions;
 using MotoPlanck.WebApi.Constants;
@@ -19,7 +20,8 @@ namespace MotoPlanck.WebApi.Endpoints.Motorcycle
                 .Map(value => new DeleteMotorcycleCommand(id))
                 .Bind(command => sender.Send(command))
                 .Match(Ok, BadRequest);
-            });
+
+            }).RequireAuthorization(SettingsConstants.ADMIN_POLICY);
         }
     }
 }
