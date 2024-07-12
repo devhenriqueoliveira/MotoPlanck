@@ -7,6 +7,7 @@ namespace MotoPlanck.Domain.Interfaces
     public interface IMotorcycleRepository : IGenericRepository<Motorcycle>
     {
         Task<Result> ExistsPlateAsync(string plate, CancellationToken cancellationToken);
+        Task<Result<Motorcycle>> GetByPlateAsync(string plate, CancellationToken cancellationToken);
         Task<Result> UpdatePlateByIdAsync(Guid id, string plate, CancellationToken cancellationToken);
     }
 }

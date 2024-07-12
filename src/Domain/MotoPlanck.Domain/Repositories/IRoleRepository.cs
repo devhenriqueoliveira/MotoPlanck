@@ -5,6 +5,6 @@ namespace MotoPlanck.Domain.Repositories
 {
     public interface IRoleRepository : IGenericRepository<Role>
     {
-        Task<bool> ExistsIdentificator(Guid id, CancellationToken cancellationToken);
+        Task<bool> ExistsRoleAsync(Guid id, CancellationToken cancellationToken);
     }
 }

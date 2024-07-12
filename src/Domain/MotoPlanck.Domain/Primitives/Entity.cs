@@ -17,11 +17,6 @@ namespace MotoPlanck.Domain.Primitives
             Id = Guid.NewGuid();
         }
 
-        protected Entity(Guid id)
-        {
-            Id = id;
-        }
-
         /// <summary>
         /// Gets the entity identifier.
         /// </summary>

@@ -5,5 +5,6 @@ namespace MotoPlanck.Domain.Repositories
 {
     public interface IPlanRepository : IGenericRepository<Plan>
     {
+        Task<bool> ExistsPlanById(Guid id, CancellationToken cancellationToken);
     }
 }
