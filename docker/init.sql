@@ -26,5 +26,34 @@ CREATE TABLE IF NOT EXISTS Roles (
 	Active BOOLEAN NOT NULL
 );
 
+-- Create Deliveryman table
+CREATE TABLE IF NOT EXISTS Deliverymans (
+    Id UUID PRIMARY KEY,
+    Cnpj VARCHAR(14) NOT NULL,
+    Cnh VARCHAR(12) NOT NULL,
+	TypeCnh VARCHAR(2) NOT NULL,
+	PictureCnhId VARCHAR(400) NOT NULL,
+	UserId UUID NOT NULL
+);
+
+-- Create Plan table
+CREATE TABLE IF NOT EXISTS Plans (
+    Id UUID PRIMARY KEY,
+    Day SMALLINT NOT NULL,
+    Amount REAL NOT NULL,
+	RatePercentage SMALLINT NOT NULL
+);
+
+-- Create Rent table
+CREATE TABLE IF NOT EXISTS Rentals (
+    Id UUID PRIMARY KEY,
+    InitialDate DATE NOT NULL,
+	FinalDate DATE NOT NULL,
+	ForecastDate DATE NOT NULL,
+    MotorcycleId UUID NOT NULL,
+	DeliverymanId UUID NOT NULL,
+	PlanId UUID NOT NULL
+);
+
 -- Print success message
 DO $$ BEGIN RAISE NOTICE 'Tables created successfully'; END $$;
