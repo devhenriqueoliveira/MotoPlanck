@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MotoPlanck.Application.Abstractions.Messaging;
+using MotoPlanck.Domain.Primitives.Result;
 
 namespace MotoPlanck.Application.Core.Plans.Commands.DeletePlan
 {
-    internal class DeletePlanCommand
-    {
-    }
+    /// <summary>
+    /// Represents the command to delete a plan.
+    /// </summary>
+    /// <param name="Id"></param>
+    public sealed record DeletePlanCommand(Guid Id) : ICommand<Result>;
 }
